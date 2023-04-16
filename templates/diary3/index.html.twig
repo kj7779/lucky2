@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Diary3 index{% endblock %}
+
+{% block body %}
+    <h1>Diary3 index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Content</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for diary3 in diary3s %}
+            <tr>
+                <td>{{ diary3.id }}</td>
+                <td>{{ diary3.date ? diary3.date|date('Y-m-d') : '' }}</td>
+                <td>{{ diary3.content }}</td>
+                <td>
+                    <a href="{{ path('app_diary3_show', {'id': diary3.id}) }}">show</a>
+                    <a href="{{ path('app_diary3_edit', {'id': diary3.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_diary3_new') }}">Create new</a>
+{% endblock %}
